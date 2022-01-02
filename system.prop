@@ -1,0 +1,5 @@
+ro.config.media_vol_steps=100
+audio.safemedia.bypass=true
+ro.audio.ignore_effects=true
+persist.bluetooth.sbc_hd_higher_bitrate=1
+af.resampler.quality=7
