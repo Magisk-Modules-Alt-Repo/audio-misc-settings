@@ -3,3 +3,6 @@ audio.safemedia.bypass=true
 ro.audio.ignore_effects=true
 persist.bluetooth.sbc_hd_higher_bitrate=1
 af.resampler.quality=7
+ro.audio.resampler.psd.enable_at_samplerate=48000
+ro.audio.resampler.psd.stopband=115
+ro.audio.resampler.psd.halflength=128
