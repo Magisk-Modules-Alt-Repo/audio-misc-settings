@@ -1,6 +1,6 @@
 #!/system/bin/sh
 
-# sleep 31 secs needed for "settings" commans to become effective
+# sleep 31 secs needed for "settings" commands to become effective
 # and make volume medial steps to be 100 if a volume steps facility is used
 
 function additionalSettings()
