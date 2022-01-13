@@ -1,6 +1,6 @@
 ## A Magisk module for setting miscellaneous audio configuration values (media audio volume steps (100 steps), disabling the effects framework, raising resampling quality, etc.)
 
-This module changes the number of steps in media volume to 100 steps (0.4~0.7dB per step), disables the effects framework (nearly direct low jitter audio pass), and raises the quality of audio resampling (to a mastering quality level) and the bitrate limit of bluetooth codec SBC (dual channel mode) for EDR 2Mbps earphones to improve audio quality effectively in a simple manner.
+This module changes the number of steps in media volume to 100 steps (0.4~0.7dB per step), disables the effects framework (nearly direct low jitter audio pass), adjusts a USB trasfer period, and raises the quality of audio resampling (to a mastering quality level) and the bitrate limit of bluetooth codec SBC (dual channel mode) for EDR 2Mbps earphones to improve audio quality effectively in a simple manner.
 
 * This module has been Tested on LineageOS and ArrowOS ROM's, and phh GSI's (Android 10 & 11 & 12, Qualcomm & MediaTek SoC, and Arm32 & Arm64 combinations). 
 
