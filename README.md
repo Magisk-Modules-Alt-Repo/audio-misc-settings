@@ -6,7 +6,7 @@ This module,
     <li>raises the resampling quality of AudioFlinger (the OS mixer) from the AOSP standard one (stop-band attenuation 90dB & cut off 100% of the Nyquist frequency & half filter length 32) to a mastering quality (167dB & 106% & 368 or 160db & 91% & 480 (or 320 for low performance devices), i.e., no resampling distortion in a real sense even though the 160dB targeted attenuation is not accomplished in the AOSP implementation),</li>
     <li>disables the effects framework to interface to equalizers, virtualizers, visualizers, echo cancelers, automatic gain controls, etc., because of nearly direct low jitter audio pass,</li>
     <li>adjusts a USB transfer period,</li>
-    <li>sets the bitrate limit of bluetooth codec SBC (dual channel mode) for EDR 2Mbps entry class earphones (not for EDR 3Mbps performance ones),</li>
+    <li>sets a higher bitrate limit of bluetooth codec SBC (dual channel mode) for EDR 2Mbps entry class earphones (not for EDR 3Mbps performance ones),</li>
 </ol><br/>
     for improving audio quality effectively in a simple manner.
 <br/>
