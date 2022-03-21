@@ -1,3 +1,5 @@
+#!/system/bin/sh
+
 # Replace system property values for old Androids and some low performance SoC's
 
 function replaceSystemProps()
