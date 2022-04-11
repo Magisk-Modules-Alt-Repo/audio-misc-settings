@@ -16,10 +16,10 @@ function replaceSystemProps()
 function replaceSystemProps_Kona()
 {
     sed -i \
-        -e 's/ro\.audio\.usb\.period_us=.*$/ro\.audio\.usb\.period_us=20000/' \
+        -e 's/ro\.audio\.usb\.period_us=.*$/ro\.audio\.usb\.period_us=20375/' \
             "$MODPATH/system.prop"
     sed -i \
-        -e 's/ro\.audio\.usb\.period_us=.*$/ro\.audio\.usb\.period_us=20000/' \
+        -e 's/ro\.audio\.usb\.period_us=.*$/ro\.audio\.usb\.period_us=20375/' \
             "$MODPATH/system.prop-workaround"
 }
 

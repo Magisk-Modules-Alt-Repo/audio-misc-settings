@@ -5,7 +5,7 @@ This module,
     <li>changes the number of steps in media volume to 100 steps (0.4~0.7dB per step),</li>
     <li>raises the resampling quality of the Android OS mixer (AudioFlinger) to a very mastering quality (i.e., no resampling distortion in a real sense),</li>
     <li>disables the effects framework of the mixer (to interface to equalizers, virtualizers, visualizers, echo cancelers, automatic gain controls, etc.) for obtaining a nearly direct low jitter audio pass,</li>
-    <li>adjusts a USB transfer period,</li>
+    <li>adjusts a USB transfer period for directly reducing the jitter of PLL in a DAC (even in an asynchronous mode),</li>
     <li>sets a higher bitrate limit of bluetooth codec SBC (dual channel mode) for EDR 2Mbps entry class earphones (not for EDR 3Mbps performance ones),</li>
 </ol><br/>
     for improving audio quality effectively in a simple manner.
