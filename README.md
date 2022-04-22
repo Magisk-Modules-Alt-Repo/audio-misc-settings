@@ -13,7 +13,7 @@ This module,
 <br/>
 <br/>
 
-* Note: This module raises the resampling quality from AOSP standard one (stop-band attenuation 90dB & cut off 100% of the Nyquist frequency & half filter length 32) to a very mastering quality (167dB & 106% & 368 for Android 12 and later devices, 160db & 91% & 480 for Android 9 & 10 & 11 ones (except low performance ones), and 160dB & 91% & 320 for low performance Andoird 9 & 10 & 11 ones; because earlier than Android 12 has a bug relating to aliasing processing around the Nyquist frequency.). But this cannot raise the quality for Android 8.1 and earlier ones. And those attenuation values are target ones used for a resampler design and may not be accomplished in the AOSP implementation.
+* Note: This module raises the resampling quality from AOSP standard one (stop-band attenuation 90dB & cut off 100% of the Nyquist frequency & half filter length 32) to a very mastering quality (179dB & 99% & 408 for Android 12 and later devices and 160db & 91% & 480 for Android 9 & 10 & 11 ones (except low performance ones), but 167dB & 106% & 368 for low performance Android 12 and later devices, 160dB & 91% & 320 for low performance Andoird 9 & 10 & 11 ones; because earlier than Android 12 has a bug relating to aliasing processing around the Nyquist frequency). However, this cannot raise the quality for Android 8.1 and earlier ones. Please keep in mind that those attenuation values are used for a resampler design as a targeted ones and may not be accomplished in the AOSP implementation.
 
 * This module has been tested on LineageOS and ArrowOS ROM's, and phh GSI's (Android 10 & 11 & 12, Qualcomm & MediaTek SoC, and Arm32 & Arm64 combinations). 
 
