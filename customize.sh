@@ -27,10 +27,23 @@ function replaceSystemProps_Kona()
             "$MODPATH/system.prop-workaround"
 }
 
+function replaceSystemProps_MT68()
+{
+    sed -i \
+        -e 's/ro\.audio\.usb\.period_us=.*$/ro\.audio\.usb\.period_us=1125/' \
+            "$MODPATH/system.prop"
+    sed -i \
+        -e 's/ro\.audio\.usb\.period_us=.*$/ro\.audio\.usb\.period_us=1125/' \
+            "$MODPATH/system.prop-workaround"
+}
+
 if "$IS64BIT"; then
     case "`getprop ro.board.platform`" in
         "kona" )
             replaceSystemProps_Kona
+            ;;
+        mt68* )
+            replaceSystemProps_MT68
             ;;
         mt67[56]? )
             replaceSystemProps
