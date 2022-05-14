@@ -37,7 +37,7 @@ This module,
     | External examples: | - | - | - | - |
     | 100 | 29 | | 109 | AK4493 (Sharp Roll-Off for x N over-sampling) |
     | 120 | 35 | | 110 | ESS 9038PRO (Sharp Roll-Off for x N over-sampling) |
-    | 98 | 130 | 98.5 | | iOS Leapard (guess) |
+    | 98 | 130 | 98.5 | | MacOS Leopard (guess) |
     | 160 | 240 | | 100 | iZotope, No-Alias (guess) |
     | 98 | 64 | | 100 | SoX HQ linear phase (guess) |
     | 194 | 480 | | 100 | SoX VHQ linear phase (guess) |
