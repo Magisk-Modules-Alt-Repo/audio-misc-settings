@@ -21,7 +21,28 @@ This module,
 
 * Please disable "Manage apps automatically" in "Battery manager" (or "Adaptive battery" of "Adaptive preferences") in the battery section (needless to say, don't enable battery savers, performance limiters and the like), and change "Battery optimization" from "Optimize" to "Don't optimize" (or change "Battery usage" from "Optimized" to "Unrestricted") for following app's manually through the settings UI of Android OS (to lower less than 10Hz jitter making extremely short reverb or foggy sound like distortion) even though disabling the Android doze itself. music (streaming) player apps, their licensing apps (if exist), "AirMusic" (if exists), "AirMusic  Recording Service" (system app; if exists), equalizer apps (if exist), "Bluetooth" (system app), "Bluetooth MIDI Service" (system app), "MTP Host" (system app), "NFC Service" (system app; if exists), "sManager" or the like (if exists), "Magisk" (if exists), System WebView apps (system app), Browser apps, "PhhTrebleApp" (system app; if exists), "Android Services Library" (system app), "Android Shared Library" (system app), "Android System" (system app), "System UI" (system app), "Input Devices" (system app), {Gesture, 3 Button, 2  Button} Navigation Bar apps (which you are using only; system app), "crDroid System" (system app; if exists), "LineageOS System" (system app; if exists), launcher app, "Google Play Store" (system app), "Google Play services" (system app), "Styles & wallpaper" or the like (system app), {Lineage, crDroid, Arrow, etc.} themes app (system app; if exists),  "AOSP panel" (system app; if exists), "OmniJaws" (system app; if exists), "OmniStyle" (system app; if exists), "Active Edge Service" (system app; if exists), "Android Device Security Module" (system app; if exists), "Call Management" (system app; if exists), "Phone" (system app; if exists), "Phone Calls" (system app; if exists), "Phone Services" (system app; if exists), "Phone and Messaging Storage" (system app; if exists), "Storage Manager" (system app), "Default" (system app; if exists), "Default StatusBar" (system app; if exists), "Wfd Service" (system app; if exists), "Wallpaper" or the like (system app), "Adreno Graphics Drivers" (system app; if exists), "com.android.providers.media" (system app), "Files by Google" (system app; if exists), "Google Play Services for AR" (system app; if exists), "Google Services Framework" (system app), "Waterfall cutout" (system app), "Network Manager" (system app), "Companion Device Manager" (system app), "Intent Filter Verification Service" (system app), "Calendar", camera apps, keyboard app, kernel adiutors (if exist), etc. And Disable "Digital Wellbeing" (system app; if it exists) itself or change "Battery usage" from "Optimized" to "Unrestricted" (this is very harmful for audio like camera servers).
 
-* See also my companion script ["USB_SampleRate_Changer"](https://github.com/yzyhk904/USB_SampleRate_Changer) to change the sample rate of the USB (HAL) audio class driver and a 3.5mm jack on the fly like Bluetooth LDAC or Windows mixer to enjoy high resolution sound or to reduce resampling distortion (actually pre-echo, ringing and intermodulation) ultimately. If annoying (perhaps, for many people) DRC (Dynamic Range Control, i.e., a kind of compression) has been enabled on your device (e.g., smart phones and tablets having an SDM??? or SM???? model numbered SoC internally), you can disable DRC by this script. Or you can use my magisk module ["DRC remover"](https://github.com/Magisk-Modules-Alt-Repo/drc-remover) to simply disable DRC only.<br/>
+* See also my companion script ["USB_SampleRate_Changer"](https://github.com/yzyhk904/USB_SampleRate_Changer) to change the sample rate of the USB (HAL) audio class driver and a 3.5mm jack on the fly like Bluetooth LDAC or Windows mixer to enjoy high resolution sound or to reduce resampling distortion (actually pre-echo, ringing and intermodulation) ultimately. If annoying (perhaps, for many people) DRC (Dynamic Range Control, i.e., a kind of compression) has been enabled on your device (e.g., smart phones and tablets having an SDM??? or SM???? model numbered SoC internally), you can disable DRC by this script. Or you can use my magisk module ["DRC remover"](https://github.com/Magisk-Modules-Alt-Repo/drc-remover) to simply disable DRC only.
+
+* Appendix (Resampling Parameter Examples) :
+    
+    
+    | Stop band attenuation (dB) | Half filter length | Cut-off (%) | Stop band (%) | Memo |
+    | ---: | ---: | ---: | ---: | ---- |
+    | 90 | 32 | 100 | | AOSP default |
+    | This mod. parameters: | - | - | - | - |
+    | 160 | 320 | 91 | | Low Performance under A12 |
+    | 160 | 480 | 91 | | High Performance under A12 |
+    | 169 | 368 | | 106 | Low Performance A12 |
+    | 179 | 408 | | 99 | High Performance A12 |
+    | External examples: | - | - | - | - |
+    | 100 | 29 | | 109 | AK4493 (Sharp Roll-Off for x N over-sampling) |
+    | 120 | 35 | | 110 | ESS 9038PRO (Sharp Roll-Off for x N over-sampling) |
+    | 98 | 130 | 98.5 | | iOS Leapard (guess) |
+    | 160 | 240 | | 100 | iZotope, No-Alias (guess) |
+    | 98 | 64 | | 100 | SoX HQ linear phase (guess) |
+    | 194 | 480 | | 100 | SoX VHQ linear phase (guess) |
+
+<br/>
 <br/>
 
 ## DISCLAIMER
