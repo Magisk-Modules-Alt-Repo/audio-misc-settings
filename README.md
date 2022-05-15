@@ -25,14 +25,14 @@ This module,
 
 * Appendix (Resampling Parameter Examples) :
     
-    
+
     | Stop band attenuation (dB) | Half filter length | Cut-off (%) | Stop band (%) | Memo |
     | ---: | ---: | ---: | ---: | ---- |
     | 90 | 32 | 100 | | AOSP default |
     | This mod. parameters: | - | - | - | - |
     | 160 | 320 | 91 | | Low Performance under A12 |
     | 160 | 480 | 91 | | High Performance under A12 |
-    | 169 | 368 | | 106 | Low Performance A12 |
+    | 167 | 368 | | 106 | Low Performance A12 |
     | 179 | 408 | | 99 | High Performance A12 |
     | External examples: | - | - | - | - |
     | 100 | 29 | | 109 | AK4493 (Sharp Roll-Off for x N over-sampling) |
