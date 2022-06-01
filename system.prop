@@ -1,7 +1,11 @@
 ro.config.media_vol_steps=100
 audio.safemedia.bypass=true
 ro.audio.ignore_effects=true
-ro.audio.usb.period_us=4000
+ro.audio.usb.period_us=3375
+audio.adm.buffering.ms=2
+vendor.audio.adm.buffering.ms=2
+audio_hal.period_multiplier=2
+vendor.audio_hal.period_multiplier=2
 persist.bluetooth.sbc_hd_higher_bitrate=1
 af.resampler.quality=7
 ro.audio.resampler.psd.enable_at_samplerate=44100
