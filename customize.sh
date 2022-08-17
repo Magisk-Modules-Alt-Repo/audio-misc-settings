@@ -49,14 +49,22 @@ function replaceSystemProps_Old()
 {
     if [ -e "${MODPATH%/*/*}/modules/usb-samplerate-unlocker"  -o  -e "${MODPATH%/*/*}/modules_update/usb-samplerate-unlocker" ]; then
         sed -i \
-            -e 's/vendor\.audio\.usb\.perio=.*$/vendor\.audio\.usb\.perio=3250/' \
+            -e 's/vendor\.audio\.usb\.perio=.*$/vendor\.audio\.usb\.perio=3875/' \
                 "$MODPATH/system.prop"
         sed -i \
-            -e 's/vendor\.audio\.usb\.perio=.*$/vendor\.audio\.usb\.perio=3250/' \
+            -e 's/vendor\.audio\.usb\.perio=.*$/vendor\.audio\.usb\.perio=3875/' \
                 "$MODPATH/system.prop-workaround"
         
         loosenedMessage
         
+    else
+        sed -i \
+            -e 's/vendor\.audio\.usb\.perio=.*$/vendor\.audio\.usb\.perio=3375/' \
+                "$MODPATH/system.prop"
+        sed -i \
+            -e 's/vendor\.audio\.usb\.perio=.*$/vendor\.audio\.usb\.perio=3375/' \
+                "$MODPATH/system.prop-workaround"
+    
     fi
     
     sed -i \
@@ -178,3 +186,5 @@ if [ "`getprop ro.system.build.version.release`" -lt "12"  -a  "`getprop ro.syst
 else
     rm -f "$MODPATH/system.prop-workaround"
 fi
+
+rm -f "$MODPATH/functions4.sh"
