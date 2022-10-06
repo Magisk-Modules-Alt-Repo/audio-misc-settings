@@ -24,8 +24,9 @@ function makeLibraries()
                     REPLACE="${REPLACE} /system/vendor/${d}/${lname}"
                 fi
             fi
-        done
+        done        
     done
+    
 }
 
 # Replace system property values for old Androids and some low performance SoC's
@@ -59,10 +60,10 @@ function replaceSystemProps_Old()
         
     else
         sed -i \
-            -e 's/vendor\.audio\.usb\.perio=.*$/vendor\.audio\.usb\.perio=3375/' \
+            -e 's/vendor\.audio\.usb\.perio=.*$/vendor\.audio\.usb\.perio=2625/' \
                 "$MODPATH/system.prop"
         sed -i \
-            -e 's/vendor\.audio\.usb\.perio=.*$/vendor\.audio\.usb\.perio=3375/' \
+            -e 's/vendor\.audio\.usb\.perio=.*$/vendor\.audio\.usb\.perio=2625/' \
                 "$MODPATH/system.prop-workaround"
     
     fi
@@ -93,10 +94,10 @@ function replaceSystemProps_kona()
 
     else
         sed -i \
-            -e 's/vendor\.audio\.usb\.perio=.*$/vendor\.audio\.usb\.perio=2625/' \
+            -e 's/vendor\.audio\.usb\.perio=.*$/vendor\.audio\.usb\.perio=2500/' \
                 "$MODPATH/system.prop"
         sed -i \
-            -e 's/vendor\.audio\.usb\.perio=.*$/vendor\.audio\.usb\.perio=2625/' \
+            -e 's/vendor\.audio\.usb\.perio=.*$/vendor\.audio\.usb\.perio=2500/' \
                 "$MODPATH/system.prop-workaround"
 
     fi
@@ -112,9 +113,11 @@ function replaceSystemProps_MTK_Dimensity()
 {
     if [ -e "${MODPATH%/*/*}/modules/usb-samplerate-unlocker"  -o  -e "${MODPATH%/*/*}/modules_update/usb-samplerate-unlocker" ]; then
         sed -i \
+            -e 's/vendor\.audio\.usb\.perio=.*$/vendor\.audio\.usb\.perio=3250/' \
             -e '$avendor.audio.usb.out.period_us=3250\nvendor.audio.usb.out.period_count=2' \
                 "$MODPATH/system.prop"
         sed -i \
+            -e 's/vendor\.audio\.usb\.perio=.*$/vendor\.audio\.usb\.perio=3250/' \
             -e '$avendor.audio.usb.out.period_us=3250\nvendor.audio.usb.out.period_count=2' \
                 "$MODPATH/system.prop-workaround"
 
@@ -122,10 +125,10 @@ function replaceSystemProps_MTK_Dimensity()
         
     else
         sed -i \
-            -e '$avendor.audio.usb.out.period_us=2625\nvendor.audio.usb.out.period_count=2' \
+            -e '$avendor.audio.usb.out.period_us=2500\nvendor.audio.usb.out.period_count=2' \
                 "$MODPATH/system.prop"
         sed -i \
-            -e '$avendor.audio.usb.out.period_us=2625\nvendor.audio.usb.out.period_count=2' \
+            -e '$avendor.audio.usb.out.period_us=2500\nvendor.audio.usb.out.period_count=2' \
                 "$MODPATH/system.prop-workaround"
         
     fi

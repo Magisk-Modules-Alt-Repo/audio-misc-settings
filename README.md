@@ -7,7 +7,8 @@ This module,
     <li>disables the effects framework of the mixer (to interface to equalizers, virtualizers, visualizers, echo cancelers, automatic gain controls, etc.) for obtaining a nearly direct low jitter audio pass,</li>
     <li>adjusts a USB transfer period of the USB HAL driver (not the recently common hardware offloading USB (tunneling) driver) for directly reducing the jitter of a PLL in a DAC (even in an asynchronous mode); Use <a href="https://github.com/yzyhk904/USB_SampleRate_Changer">"USB_SampleRate_Changer"</a> to switch from the usual hardware offloading USB (tunneling) driver to the USB HAL one,</li>
     <li>sets a higher bitrate limit of bluetooth codec SBC (dual channel mode) for EDR 2Mbps entry class earphones (not for EDR 3Mbps performance ones, but including AV amplifiers and BT speakers),</li>
-    <li>sets an audio scheduling tunable "vendor.audio.adm.buffering.ms" "2" to reduce jitter on all audio outputs</li>
+    <li>sets an audio scheduling tunable "vendor.audio.adm.buffering.ms" "2" to reduce jitter on all audio outputs,</li>
+    <li>nullifys volume listener libraries in "soundfx" folders  for disabling slight compression (maybe a peak limiter only on Qcomm devices); I recommend using <a href="https://github.com/Magisk-Modules-Alt-Repo/drc-remover">"DRC remover"</a> additionally for disabling much larger compression (DRC) if on Qcomm devices</li>
 </ol><br/>
     for improving audio quality effectively in a simple manner.
 <br/>
