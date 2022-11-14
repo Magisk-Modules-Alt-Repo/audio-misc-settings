@@ -8,14 +8,14 @@ This module,
     <li>adjusts a USB transfer period of the USB HAL driver (not the recently common hardware offloading USB (tunneling) driver) for directly reducing the jitter of a PLL in a DAC (even in an asynchronous mode); Use <a href="https://github.com/yzyhk904/USB_SampleRate_Changer">"USB_SampleRate_Changer"</a> to switch from the usual hardware offloading USB (tunneling) driver to the USB HAL one,</li>
     <li>sets a higher bitrate limit of bluetooth codec SBC (dual channel mode) for EDR 2Mbps entry class earphones (not for EDR 3Mbps performance ones, but including AV amplifiers and BT speakers),</li>
     <li>sets an audio scheduling tunable "vendor.audio.adm.buffering.ms" "2" to reduce jitter on all audio outputs,</li>
-    <li>nullifys volume listener libraries in "soundfx" folders  for disabling slight compression (maybe a peak limiter only on Qcomm devices); I recommend using <a href="https://github.com/Magisk-Modules-Alt-Repo/drc-remover">"DRC remover"</a> additionally for disabling much larger compression (DRC) if on Qcomm devices</li>
+    <li>nullifys volume listener libraries in "soundfx" folders for disabling slight compression (maybe a peak limiter only on Qcomm devices); I recommend using <a href="https://github.com/Magisk-Modules-Alt-Repo/drc-remover">"DRC remover"</a> additionally for disabling much larger compression (DRC) if on Qcomm devices</li>
 </ol><br/>
     for improving audio quality effectively in a simple manner.
 <br/>
 <br/>
 <br/>
 
-* This module has been tested on LineageOS and ArrowOS ROM's, and phh GSI's (Android 10 & 11 & 12, Qualcomm & MediaTek SoC, and Arm32 & Arm64 combinations). 
+* This module has been tested on LineageOS and ArrowOS ROM's, and phh GSI's (Android 10 ~ 13, Qualcomm & MediaTek SoC, and Arm32 & Arm64 combinations). 
 
 * Note 1: This module raises the resampling quality from AOSP standard one (stop band attenuation 90dB & cut off 100% of the Nyquist frequency & half filter length 32) to a very mastering quality (179dB & 99% & 408 for Android 12 and later devices and 160db & 91% & 480 for Android 9 & 10 & 11 ones (except low performance ones), but 167dB & 106% & 368 for low performance Android 12 and later devices, 160dB & 91% & 320 for low performance Android 9 & 10 & 11 ones; because earlier than Android 12 has a bug relating to aliasing processing around the Nyquist frequency). However, this cannot raise the quality for Android 8.1 and earlier ones. Please keep in mind that those attenuation values are used for a resampler design as a targeted ones and may not be accomplished in the AOSP implementation.
 
@@ -39,8 +39,8 @@ This module,
     | 167 | 368 | | 106 | Low Performance A12 |
     | 179 | 408 | | 99 | High Performance A12 |
     | External examples: | - | - | - | - |
-    | 100 | 29 | | 109 | AK4493 (Sharp Roll-Off for x N over-sampling) |
-    | 120 | 35 | | 110 | ESS 9038PRO (Sharp Roll-Off for x N over-sampling) |
+    | 100 | 29 | | 109 | AK4493 (Sharp Roll-Off for N-fold over-sampling) |
+    | 120 | 35 | | 110 | ESS 9038PRO (Sharp Roll-Off for N-fold over-sampling) |
     | 98 | 130 | 98.5 | | MacOS Leopard (guess) |
     | 160 | 240 | | 100 | iZotope, No-Alias (guess) |
     | 98 | 64 | | 100 | SoX HQ linear phase (guess) |
