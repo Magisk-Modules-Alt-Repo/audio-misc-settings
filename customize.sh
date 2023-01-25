@@ -11,15 +11,14 @@ if "$IS64BIT"; then
         "kona" )
             replaceSystemProps_Kona
             ;;
-        "sdm660" | "sdm845" )
+        "sdm845" )
+            replaceSystemProps_SDM845
+            ;;
+        "sdm660" )
             replaceSystemProps_SDM
             ;;
         mt68* )
-            if [ -r "/vendor/lib64/hw/audio.usb.${board}.so" ]; then
-                replaceSystemProps_MTK_Dimensity
-            else
-                replaceSystemProps_Others
-            fi
+            replaceSystemProps_MTK_Dimensity
             ;;
         mt67[56]? )
             replaceSystemProps_Others
