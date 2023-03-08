@@ -299,3 +299,46 @@ function replaceSystemProps_Others()
     fi
     
 }
+
+function stopSpatializer()
+{
+    # stopSpatializer has two args specifying an audio policy configuration XML file (eg. bluetooth_audio_policy_configuration_7_0.xml) 
+    #   and its dummy one to be overridden
+
+    if [ $# -eq 2  -a  -r "$1"  -a  -w "$2" ]; then
+        # Copy and override an original audio_policy_configuration.xml to its dummy file
+        cp -f "$1" "$2"
+        # Change an audio_policy_configuration.xml file to remove Spatializer
+        sed -i 's/flags[:space:]*=[:space:]*"AUDIO_OUTPUT_FLAG_SPATIALIZER"//' "$2"
+    fi
+}
+
+function deSpatializeAudioPolicyConfig()
+{
+    if [ $# -ne 1  -o  -z "$1"  -o  ! -r "$1" ]; then
+        return 1
+    fi
+    local MAGISKPATH="$(magisk --path)"
+    local configXML="$1"
+    
+    # Don't use "$MAGISKPATH/.magisk/mirror/system${configXML}" instead of "$MAGISKPATH/.magisk/mirror${configXML}".
+    # In some cases, the former may link to overlaied "${configXML}" by Magisk itself (not original mirrored "${configXML}").
+    local mirrorConfigXML="$MAGISKPATH/.magisk/mirror${configXML}"
+
+    if [ -n "$configXML"  -a  -r "$mirrorConfigXML" ]; then
+        grep -e "flags[[:space:]]*=[[:space:]]*\"AUDIO_OUTPUT_FLAG_SPATIALIZER\"" "$mirrorConfigXML" >"/dev/null" 2>&1
+        if [ "$?" -eq 0 ]; then
+            local modConfigXML="$MODPATH/system${configXML}"
+            mkdir -p "${modConfigXML%/*}"
+            touch "$modConfigXML"
+            stopSpatializer "$mirrorConfigXML" "$modConfigXML"
+            chmod 644 "$modConfigXML"
+            chmod -R a+rX "$MODPATH/system/vendor/etc"
+            if [ -z "$REPLACE" ]; then
+                REPLACE="/system${configXML}"
+            else
+                REPLACE="$REPLACE /system${configXML}"
+            fi
+        fi
+    fi
+}

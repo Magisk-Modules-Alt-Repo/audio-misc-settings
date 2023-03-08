@@ -4,6 +4,7 @@
 
 REPLACE=""
 makeLibraries
+deSpatializeAudioPolicyConfig "/vendor/etc/bluetooth_audio_policy_configuration_7_0.xml"
 
 if "$IS64BIT"; then
     board="`getprop ro.board.platform`"

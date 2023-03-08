@@ -1,6 +1,7 @@
 ro.config.media_vol_steps=100
 audio.safemedia.bypass=true
 ro.audio.ignore_effects=true
+ro.audio.spatializer_enabled=false
 vendor.audio.usb.perio=2500
 vendor.audio.usb.out.period_us=2500
 vendor.audio.usb.out.period_count=2
