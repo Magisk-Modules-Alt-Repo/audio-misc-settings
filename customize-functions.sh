@@ -112,6 +112,8 @@ function makeLibraries()
                 mkdir -p "${MODPATH}/system/vendor/${d}"
                 patchMapProperty "${MAGISKPATH}/.magisk/mirror/vendor/${d}/${lname}" "${MODPATH}/system/vendor/${d}/${lname}"
                 chmod 644 "${MODPATH}/system/vendor/${d}/${lname}"
+                chcon u:object_r:vendor_file:s0 "${MODPATH}/system/vendor/${d}/${lname}"
+                chown root:root "${MODPATH}/system/vendor/${d}/${lname}"
                 chmod -R a+rX "${MODPATH}/system/vendor/${d}"
                 if [ -z "${REPLACE}" ]; then
                     REPLACE="/system/vendor/${d}/${lname}"
@@ -232,12 +234,12 @@ function replaceSystemProps_kona()
 
     else
         sed -i \
-            -e 's/vendor\.audio\.usb\.perio=.*$/vendor\.audio\.usb\.perio=2500/' \
-            -e 's/vendor\.audio\.usb\.out\.period_us=.*$/vendor\.audio\.usb\.out\.period_us=2500/' \
+            -e 's/vendor\.audio\.usb\.perio=.*$/vendor\.audio\.usb\.perio=3500/' \
+            -e 's/vendor\.audio\.usb\.out\.period_us=.*$/vendor\.audio\.usb\.out\.period_us=3500/' \
                 "$MODPATH/system.prop"
         sed -i \
-            -e 's/vendor\.audio\.usb\.perio=.*$/vendor\.audio\.usb\.perio=2500/' \
-            -e 's/vendor\.audio\.usb\.out\.period_us=.*$/vendor\.audio\.usb\.out\.period_us=2500/' \
+            -e 's/vendor\.audio\.usb\.perio=.*$/vendor\.audio\.usb\.perio=3500/' \
+            -e 's/vendor\.audio\.usb\.out\.period_us=.*$/vendor\.audio\.usb\.out\.period_us=3500/' \
                 "$MODPATH/system.prop-workaround"
 
     fi
@@ -333,6 +335,8 @@ function deSpatializeAudioPolicyConfig()
             touch "$modConfigXML"
             stopSpatializer "$mirrorConfigXML" "$modConfigXML"
             chmod 644 "$modConfigXML"
+            chcon u:object_r:vendor_configs_file:s0 "$modConfigXML"
+            chown root:root "$modConfigXML"
             chmod -R a+rX "$MODPATH/system/vendor/etc"
             if [ -z "$REPLACE" ]; then
                 REPLACE="/system${configXML}"
@@ -341,4 +345,29 @@ function deSpatializeAudioPolicyConfig()
             fi
         fi
     fi
+}
+
+function disableMotoDolby()
+{
+    local MotoApps="
+/system_ext/priv-app/MotoDolbyDax3
+/system_ext/priv-app/MotorolaSettingsProvider
+/system_ext/priv-app/daxService
+/system_ext/app/MotoSignatureApp
+"
+    local MAGISKPATH="$(magisk --path)"
+    local dir mdir
+
+    for dir in $MotoApps; do
+        if [ -d "${MAGISKPATH}/.magisk/mirror${dir}" ]; then
+            mdir="${MODPATH}/system${dir}"
+            mkdir -p "$mdir"
+            chmod a+rx "$mdir"
+            if [ -z "$REPLACE" ]; then
+                REPLACE="/system${dir}"
+            else
+                REPLACE="${REPLACE} /system${dir}"
+            fi
+        fi
+    done
 }

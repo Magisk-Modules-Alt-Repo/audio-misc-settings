@@ -6,6 +6,7 @@ This module,
     <li>raises the resampling quality of the Android OS mixer (AudioFlinger) to a very mastering quality (i.e., no resampling distortion in a real sense),</li>
     <li>disables the effects framework of the mixer (to interface to equalizers, virtualizers, visualizers, echo cancelers, automatic gain controls, etc.) for obtaining a nearly direct low jitter audio pass,</li>
     <li>disables the android built-in spatial audio feature (A13 or higher; especially Tensor devices) for obtaining a nearly direct low jitter audio pass too,</li>
+    <li>disables the pre-installed Moto Dolby feature for obtaining a nearly direct low jitter audio pass too,</li>
     <li>adjusts a USB transfer period of the USB HAL driver (not the recently common hardware offloading USB (tunneling) driver) for directly reducing the jitter of a PLL in a DAC (even in an asynchronous mode); Use <a href="https://github.com/yzyhk904/USB_SampleRate_Changer">"USB_SampleRate_Changer"</a> to switch from the usual hardware offloading USB (tunneling) driver to the USB HAL one,</li>
     <li>sets a higher bitrate limit of bluetooth codec SBC (dual channel mode) for EDR 2Mbps entry class earphones (not for EDR 3Mbps performance ones, but including AV amplifiers and BT speakers),</li>
     <li>sets an audio scheduling tunable "vendor.audio.adm.buffering.ms" "2" to reduce jitter on all audio outputs,</li>
@@ -54,16 +55,5 @@ This module,
 ## DISCLAIMER
 
 * I am not responsible for any damage that may occur to your device, so it is your own choice to attempt this module.
-
-## Change logs
-
-# v1.0
-* Initial Release
-
-# v1.1
-* Set new properties related to an audio scheduling
-
-# v1.2
-* Added a workaround for Android 12 SELinux bug w.r.t. "ro.audio.usb.period_us" property
 
 ##

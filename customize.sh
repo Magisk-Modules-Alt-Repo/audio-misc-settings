@@ -3,8 +3,13 @@
 . "$MODPATH/customize-functions.sh"
 
 REPLACE=""
+
+# making patched ALSA utility libraries for "ro.audio.usb.period_us"
 makeLibraries
+# removing post-A13 (especially Tensor's) spatial audio flags in an audio configuration file for avoiding errors
 deSpatializeAudioPolicyConfig "/vendor/etc/bluetooth_audio_policy_configuration_7_0.xml"
+# disabling pre-installed Moto Dolby faetures for reducing very large jitter caused by them
+disableMotoDolby
 
 if "$IS64BIT"; then
     board="`getprop ro.board.platform`"
