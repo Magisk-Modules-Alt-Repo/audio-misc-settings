@@ -6,8 +6,8 @@ This module,
     <li>raises the resampling quality of the Android OS mixer (AudioFlinger) to a very mastering quality (i.e., no resampling distortion in a real sense),</li>
     <li>disables the effects framework of the mixer (to interface to equalizers, virtualizers, visualizers, echo cancelers, automatic gain controls, etc.) for obtaining a nearly direct low jitter audio pass,</li>
     <li>disables the android built-in spatial audio feature (A13 or higher; especially Tensor devices) for obtaining a nearly direct low jitter audio pass too,</li>
-    <li>disables the pre-installed Moto Dolby feature for obtaining a nearly direct low jitter audio pass too,</li>
-    <li>adjusts a USB transfer period of the USB HAL driver (not the recently common hardware offloading USB (tunneling) driver) for directly reducing the jitter of a PLL in a DAC (even in an asynchronous mode); Use <a href="https://github.com/yzyhk904/USB_SampleRate_Changer">"USB_SampleRate_Changer"</a> to switch from the usual hardware offloading USB (tunneling) driver to the USB HAL one,</li>
+    <li>disables pre-installed Moto Dolby features for the same as above,</li>
+    <li>adjusts a USB transfer period of the USB HAL driver (not the recently common hardware offloading USB (tunneling) driver, but including Tensor device's offloading USB driver) for directly reducing the jitter of a PLL in a DAC (even in an asynchronous mode); Use <a href="https://github.com/yzyhk904/USB_SampleRate_Changer">"USB_SampleRate_Changer"</a> to switch from the usual hardware offloading USB (tunneling) driver to the USB HAL one,</li>
     <li>sets a higher bitrate limit of bluetooth codec SBC (dual channel mode) for EDR 2Mbps entry class earphones (not for EDR 3Mbps performance ones, but including AV amplifiers and BT speakers),</li>
     <li>sets an audio scheduling tunable "vendor.audio.adm.buffering.ms" "2" to reduce jitter on all audio outputs,</li>
     <li>nullifys volume listener libraries in "soundfx" folders for disabling slight compression (maybe a peak limiter only on Qcomm devices); I recommend using <a href="https://github.com/Magisk-Modules-Alt-Repo/drc-remover">"DRC remover"</a> additionally for disabling much larger compression (DRC) if on Qcomm devices</li>
@@ -36,11 +36,11 @@ This module,
     | ---: | ---: | ---: | ---: | ---- |
     | 90 | 32 | 100 | | AOSP default |
     | This mod. parameters: | - | - | - | - |
-    | 160 | 320 | 91 | | Low Performance under A12 |
-    | 160 | 480 | 91 | | High Performance under A12 |
-    | 167 | 368 | | 106 | Low Performance A12 |
-    | 179 | 408 | | 99 | High Performance A12 |
-    | 194 | 520 | 100 | | Galaxy S4 (USB: 44.1kHz 32bit fixed) |
+    | 160 | 320 | 91 | | Low Performance devices under A12 |
+    | 160 | 480 | 91 | | High Performance devices under A12 |
+    | 167 | 368 | | 106 | Low Performance devices for A12 and later |
+    | 179 | 408 | | 99 | High Performance devices for A12 and later |
+    | 194 | 520 | 100 | | Galaxy S4 (USB: 44.1kHz and 32bits fixed) |
     | External examples: | - | - | - | - |
     | 100 | 29 | | 109 | AK4493 (Sharp Roll-Off for N-fold over-sampling) |
     | 120 | 35 | | 110 | ESS 9038PRO (Sharp Roll-Off for N-fold over-sampling) |

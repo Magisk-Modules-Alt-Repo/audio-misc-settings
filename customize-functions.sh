@@ -36,6 +36,9 @@ function getActualConfigXML()
         elif [ -e "${dir}_qssi"  -a  -r "${dir}_qssi/${fname}" ]; then
             # OnePlus stock pattern
             echo "${dir}_qssi/${fname}"
+        elif [ "${dir##*/}"  = "sku_`getprop ro.board.platform`"  -a  -r "${dir%/*}/${fname}" ]; then
+            # OnePlus stock pattern2
+            echo "${dir%/*}/${fname}"
         elif [ -r "${dir}/audio/${fname}" ]; then
             # Xiaomi stock pattern
             echo "${dir}/audio/${fname}"
@@ -107,7 +110,7 @@ function makeLibraries()
     local d lname
     
     for d in "lib" "lib64"; do
-        for lname in "libalsautils.so" "libalsautilsv2.so"; do
+        for lname in "libalsautils.so" "libalsautilsv2.so" "audio_usb_aoc.so"; do
             if [ -r "${MAGISKPATH}/.magisk/mirror/vendor/${d}/${lname}" ]; then
                 mkdir -p "${MODPATH}/system/vendor/${d}"
                 patchMapProperty "${MAGISKPATH}/.magisk/mirror/vendor/${d}/${lname}" "${MODPATH}/system/vendor/${d}/${lname}"
@@ -253,29 +256,8 @@ function replaceSystemProps_SDM845()
 
 function replaceSystemProps_SDM()
 {
-    if [ -e "${MODPATH%/*/*}/modules/usb-samplerate-unlocker"  -o  -e "${MODPATH%/*/*}/modules_update/usb-samplerate-unlocker" ]; then
-        sed -i \
-            -e 's/vendor\.audio\.usb\.perio=.*$/vendor\.audio\.usb\.perio=2625/' \
-            -e 's/vendor\.audio\.usb\.out\.period_us=.*$/vendor\.audio\.usb\.out\.period_us=2625/' \
-                "$MODPATH/system.prop"
-        sed -i \
-            -e 's/vendor\.audio\.usb\.perio=.*$/vendor\.audio\.usb\.perio=2625/' \
-            -e 's/vendor\.audio\.usb\.out\.period_us=.*$/vendor\.audio\.usb\.out\.period_us=2625/' \
-                "$MODPATH/system.prop-workaround"
-
-        loosenedMessage 192kHz
-
-    else
-        sed -i \
-            -e 's/vendor\.audio\.usb\.perio=.*$/vendor\.audio\.usb\.perio=2500/' \
-            -e 's/vendor\.audio\.usb\.out\.period_us=.*$/vendor\.audio\.usb\.out\.period_us=2500/' \
-                "$MODPATH/system.prop"
-        sed -i \
-            -e 's/vendor\.audio\.usb\.perio=.*$/vendor\.audio\.usb\.perio=2500/' \
-            -e 's/vendor\.audio\.usb\.out\.period_us=.*$/vendor\.audio\.usb\.out\.period_us=2500/' \
-                "$MODPATH/system.prop-workaround"
-
-    fi
+    # Do nothing even if "usb-samplerate-unlocker" exists
+    :
 }
 
 function replaceSystemProps_MTK_Dimensity()
@@ -337,7 +319,7 @@ function deSpatializeAudioPolicyConfig()
             chmod 644 "$modConfigXML"
             chcon u:object_r:vendor_configs_file:s0 "$modConfigXML"
             chown root:root "$modConfigXML"
-            chmod -R a+rX "$MODPATH/system/vendor/etc"
+            chmod -R a+rX "${modConfigXML%/*}"
             if [ -z "$REPLACE" ]; then
                 REPLACE="/system${configXML}"
             else
@@ -353,6 +335,7 @@ function disableMotoDolby()
 /system_ext/priv-app/MotoDolbyDax3
 /system_ext/priv-app/MotorolaSettingsProvider
 /system_ext/priv-app/daxService
+/system_ext/priv-app/DaxUI
 /system_ext/app/MotoSignatureApp
 "
     local MAGISKPATH="$(magisk --path)"
@@ -360,6 +343,11 @@ function disableMotoDolby()
 
     for dir in $MotoApps; do
         if [ -d "${MAGISKPATH}/.magisk/mirror${dir}" ]; then
+            case "${dir}" in
+                /system/* )
+                    dir="${dir#/system}"
+                ;;
+            esac
             mdir="${MODPATH}/system${dir}"
             mkdir -p "$mdir"
             chmod a+rx "$mdir"

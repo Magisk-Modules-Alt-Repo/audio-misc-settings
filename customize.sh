@@ -4,7 +4,7 @@
 
 REPLACE=""
 
-# making patched ALSA utility libraries for "ro.audio.usb.period_us"
+# making patched ALSA utility and Tensor's offload libraries for "ro.audio.usb.period_us"
 makeLibraries
 # removing post-A13 (especially Tensor's) spatial audio flags in an audio configuration file for avoiding errors
 deSpatializeAudioPolicyConfig "/vendor/etc/bluetooth_audio_policy_configuration_7_0.xml"
@@ -14,13 +14,13 @@ disableMotoDolby
 if "$IS64BIT"; then
     board="`getprop ro.board.platform`"
     case "$board" in
-        "kona" )
+        "kona" | "kalama" | "shima" | "yupik" )
             replaceSystemProps_Kona
             ;;
-        "sdm845" | "bengal" | "kalama" )
+        "sdm845" | gs* )
             replaceSystemProps_SDM845
             ;;
-        "sdm660" )
+        "sdm660" | "bengal" | "holi" )
             replaceSystemProps_SDM
             ;;
         mt68* )

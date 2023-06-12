@@ -1,6 +1,6 @@
 id=audio-misc-settings
 name=Audio misc. settings
-version=v1.3.0
-versionCode=1300
+version=v1.3.1
+versionCode=1301
 author=zyhk
 description=Setting audio misc. configuration values (e.g. 100 volume steps, raising the resampling quality, disabling the effects framework, etc.)

@@ -12,7 +12,7 @@ if [ \( -e "${MODDIR%/*/*}/modules/usb-samplerate-unlocker"  -a  ! -e "${MODDIR%
         
     # If usb-samplerate-unlock exists, save related libraries elsewhere  because the unlocker will do the same thing in itself.
     for d in "lib" "lib64"; do
-        for lname in "libalsautils.so" "libalsautilsv2.so"; do
+        for lname in "libalsautils.so" "libalsautilsv2.so" "audio_usb_aoc.so"; do
             if [ -r "${MODDIR}/system/vendor/${d}/${lname}" ]; then
                 mkdir -p "${MODDIR}/save/vendor/${d}"
                 mv "${MODDIR}/system/vendor/${d}/${lname}" "${MODDIR}/save/vendor/${d}/${lname}"
@@ -24,7 +24,7 @@ else
 
     # If usb-samplerate-unlock doesn't exist, restore related libraries from their saved folders.
     for d in "lib" "lib64"; do
-        for lname in "libalsautils.so" "libalsautilsv2.so"; do
+        for lname in "libalsautils.so" "libalsautilsv2.so" "audio_usb_aoc.so"; do
             if [ -r "${MODDIR}/save/vendor/${d}/${lname}"  -a  -e "${MODDIR}/system/vendor/${d}" ]; then
                 mv "${MODDIR}/save/vendor/${d}/${lname}" "${MODDIR}/system/vendor/${d}/${lname}"
                 chmod 644 "${MODDIR}/system/vendor/${d}/${lname}"
