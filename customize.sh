@@ -6,10 +6,22 @@ REPLACE=""
 
 # making patched ALSA utility and Tensor's offload libraries for "ro.audio.usb.period_us"
 makeLibraries
+
 # removing post-A13 (especially Tensor's) spatial audio flags in an audio configuration file for avoiding errors
 deSpatializeAudioPolicyConfig "/vendor/etc/bluetooth_audio_policy_configuration_7_0.xml"
-# disabling pre-installed Moto Dolby faetures for reducing very large jitter caused by them
-disableMotoDolby
+
+# disabling pre-installed Moto Dolby faetures and Wellbeing for reducing very large jitter caused by them
+disablePrivApps "
+/system_ext/priv-app/MotoDolbyDax3
+/system_ext/priv-app/MotorolaSettingsProvider
+/system_ext/priv-app/daxService
+/system_ext/priv-app/DaxUI
+/system_ext/app/MotoSignatureApp
+/product/priv-app/WellbeingPrebuilt
+/product/priv-app/Wellbeing
+/system_ext/priv-app/WellbeingPrebuilt
+/system_ext/priv-app/Wellbeing
+"
 
 if "$IS64BIT"; then
     board="`getprop ro.board.platform`"

@@ -329,19 +329,17 @@ function deSpatializeAudioPolicyConfig()
     fi
 }
 
-function disableMotoDolby()
+function disablePrivApps()
 {
-    local MotoApps="
-/system_ext/priv-app/MotoDolbyDax3
-/system_ext/priv-app/MotorolaSettingsProvider
-/system_ext/priv-app/daxService
-/system_ext/priv-app/DaxUI
-/system_ext/app/MotoSignatureApp
-"
+    if [ $# -ne 1  -o  -z "$1" ]; then
+        return 1
+    fi
+
     local MAGISKPATH="$(magisk --path)"
     local dir mdir
-
-    for dir in $MotoApps; do
+    local PrivApps="$1"
+    
+    for dir in $PrivApps; do
         if [ -d "${MAGISKPATH}/.magisk/mirror${dir}" ]; then
             case "${dir}" in
                 /system/* )
