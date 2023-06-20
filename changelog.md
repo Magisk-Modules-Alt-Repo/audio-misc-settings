@@ -1,7 +1,7 @@
 ## Change logs
 
 # v1.3.2
-* Hided preinstalled "Digital Wellbeing" feature for reducing significant jitter (please uninstall this manually if remaining as a usual app)
+* Hid preinstalled "Digital Wellbeing" feature for reducing significant jitter (please uninstall this manually if remaining as a usual app)
 
 # v1.3.1
 * Reduced the jitter of Tensor device's offload driver for USB DAC's
