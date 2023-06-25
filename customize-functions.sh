@@ -266,6 +266,24 @@ function replaceSystemProps_MTK_Dimensity()
     :
 }
 
+function replaceSystemProps_Tensor()
+{
+    local freq="96000"
+    if [ $# -gt 0 ]; then
+        freq="$1"
+    fi
+    
+   sed -i \
+        -e 's/vendor\.audio\.usb\.perio=.*$/vendor\.audio\.usb\.perio=2500/' \
+        -e 's/vendor\.audio\.usb\.out\.period_us=.*$/vendor\.audio\.usb\.out\.period_us=2500/' \
+            "$MODPATH/system.prop"
+    sed -i \
+        -e 's/vendor\.audio\.usb\.perio=.*$/vendor\.audio\.usb\.perio=2500/' \
+        -e 's/vendor\.audio\.usb\.out\.period_us=.*$/vendor\.audio\.usb\.out\.period_us=2500/' \
+            "$MODPATH/system.prop-workaround"
+
+}
+
 function replaceSystemProps_Others()
 {
     if [ -e "${MODPATH%/*/*}/modules/usb-samplerate-unlocker"  -o  -e "${MODPATH%/*/*}/modules_update/usb-samplerate-unlocker" ]; then

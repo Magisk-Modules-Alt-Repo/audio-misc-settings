@@ -29,8 +29,11 @@ if "$IS64BIT"; then
         "kona" | "kalama" | "shima" | "yupik" )
             replaceSystemProps_Kona
             ;;
-        "sdm845" | gs* )
+        "sdm845" )
             replaceSystemProps_SDM845
+            ;;
+        gs* )
+            replaceSystemProps_Tensor
             ;;
         "sdm660" | "bengal" | "holi" )
             replaceSystemProps_SDM

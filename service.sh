@@ -32,7 +32,13 @@ function additionalSettings()
             return 1
         fi
     fi
-
+    
+    # Stop Tensor device's AOC daemon for reducing significant jitter
+    if [ "`getprop init.svc.aocd`" = "running" ]; then
+        setprop ctl.stop aocd
+        force_restart_server=1
+    fi
+    
     # Nullifying the volume listener for no compressing audio (maybe a peak limiter)
     if [ "`getprop persist.sys.phh.disable_soundvolume_effect`" = "0" ]; then
         if [ -r "/system/phh/empty"  -a  -r "/vendor/lib/soundfx/libvolumelistener.so" ]; then
