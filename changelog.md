@@ -1,7 +1,7 @@
 ## Change logs
 
 # v1.3.3
-* Stop Tensor device's AOC daemon for reducing significant jitter
+* Stopped Tensor device's AOC daemon for reducing significant jitter
 
 # v1.3.2
 * Hid preinstalled "Digital Wellbeing" feature for reducing significant jitter (please uninstall this manually if remaining as a usual app)
