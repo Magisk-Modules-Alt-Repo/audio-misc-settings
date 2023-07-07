@@ -20,6 +20,8 @@ This module,
 
 * Don't forget to install ["Audio jitter silencer"](https://github.com/Magisk-Modules-Alt-Repo/audio-jitter-silencer) together and uninstall "Digital Wellbeing" app (for reducing very large jitters which this module cannot reduce as itself)!
 
+* Don't use Am@zon music using a much worse internal re-sampler which bypasses the mastering quality re-sampling in the OS mixer (audioFlinger). Other music streaming services don't use such an internal re-sampler, as far as I know.
+
 * This module has been tested on LineageOS and ArrowOS ROM's, and phh GSI's (Android 10 ~ 13, Qualcomm & MediaTek SoC, and Arm32 & Arm64 combinations). 
 
 * Note 1: This module raises the resampling quality from AOSP standard one (stop band attenuation 90dB & cut off 100% of the Nyquist frequency & half filter length 32) to a very mastering quality (179dB & 99% & 408 for Android 12 and later devices and 160db & 91% & 480 for Android 9 & 10 & 11 ones (except low performance ones), but 167dB & 106% & 368 (194dB & 100% & 520 exceptionally for Galaxy S4) for low performance Android 12 and later devices, 160dB & 91% & 320 for low performance Android 9 & 10 & 11 ones; because earlier than Android 12 has a bug relating to aliasing processing around the Nyquist frequency). However, this cannot raise the quality for Android 8.1 and earlier ones. Please keep in mind that those attenuation values are used for a resampler design as targeted ones and may not be accomplished in the AOSP implementation.
