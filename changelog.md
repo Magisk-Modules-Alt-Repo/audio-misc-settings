@@ -1,5 +1,8 @@
 ## Change logs
 
+# v1.3.4
+* Tuned tunables of I/O scheduler for reducing jitter
+
 # v1.3.3
 * Stopped Tensor device's AOC daemon for reducing significant jitter
 
