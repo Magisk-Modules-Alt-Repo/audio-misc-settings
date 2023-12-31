@@ -1,5 +1,8 @@
 ## Change logs
 
+# v1.3.5
+* * Added Tensor 3 support
+
 # v1.3.4
 * * Tuned USB transfer period sizes for reducing jitter
 
