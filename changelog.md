@@ -1,5 +1,9 @@
 ## Change logs
 
+#v1.3.6
+* Tuned the USB period size for SDM845 devices (2500 usec to 2250 usec)
+* Tuned the USB period size for other devices (to 2250 usec)
+
 # v1.3.5
 * Changed the re-sampling parameters for Galaxy S4 to the general purpose ones (optimized for 3.5mm jack; not USB DAC's)
 * Tuned the USB period size for Tensor devices (2625 usec to 2250 usec)
