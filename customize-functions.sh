@@ -1,5 +1,18 @@
 #!/system/bin/sh
 
+# Check whether Magisk magic mount compatible or not
+function isMagiskMountCompatible()
+{
+    local tmp="$(magisk --path)"
+    if [ -z "$tmp" ]; then
+        return 1
+    elif [ -d "${tmp}/.magisk/mirror/vendor" ]; then
+        return 0
+    else
+        return 1
+    fi
+}
+
 # Get the active audio policy configuration fille from the audioserever
 function getActivePolicyFile()
 {

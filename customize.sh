@@ -2,6 +2,10 @@
 
 . "$MODPATH/customize-functions.sh"
 
+if ! isMagiskMountCompatible; then
+    abort "  ***  Aborted by an incompatible Magisk variant detection. Try again with pure Magisk! ***"
+fi
+
 REPLACE=""
 
 # making patched ALSA utility and Tensor's offload libraries for "ro.audio.usb.period_us"
