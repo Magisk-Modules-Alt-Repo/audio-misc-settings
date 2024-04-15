@@ -1,9 +1,16 @@
 #!/system/bin/sh
 
+[ -z "$(magisk --path)" ] && alias magisk='ksu-magisk'
+
 . "$MODPATH/customize-functions.sh"
 
 if ! isMagiskMountCompatible; then
-    abort "  ***  Aborted by an incompatible Magisk variant detection. Try again with pure Magisk! ***"
+    abort '  ***
+  Aborted by no Magisk-mirrors:
+    Try again
+      a.) with official Magisk (mounting mirrors)
+      b.) after installing "compatible Magisk-mirroring" Magisk module
+  ***'
 fi
 
 REPLACE=""
@@ -72,4 +79,4 @@ else
     rm -f "$MODPATH/system.prop-workaround"
 fi
 
-rm -f "$MODPATH/customize-functions.sh"
+rm -f "$MODPATH/customize-functions.sh" "$MODPATH/LICENSE" "$MODPATH/README.md" "$MODPATH/changelog.md"
