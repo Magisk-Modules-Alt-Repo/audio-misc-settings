@@ -45,7 +45,9 @@ This module,
     | 179 | 408 | | 99 | High Performance devices for A12 and later, and Galaxy S4 |
     | External examples: | - | - | - | - |
     | 100 | 29 | | 109 | AK4493 (Sharp Roll-Off for N-fold over-sampling) |
-    | 120 | 35 | | 110 | ESS 9038PRO (Sharp Roll-Off for N-fold over-sampling) |
+    | 150 | 42 | | 109 | AK4191EQ (Sharp Roll-Off for N-fold over-sampling) |
+    | 120 | 35 | | 110 | ESS 9038PRO (Fast Roll-Off for N-fold over-sampling) |
+    | 118 | 34 | 96 | | ESS 9039PRO (Fast Roll-Off for N-fold over-sampling) |
     | 98 | 130 | 98.5 | | MacOS Leopard (guess) |
     | 160 | 240 | | 100 | iZotope, No-Alias (guess) |
     | 98 | 64 | | 100 | SoX HQ linear phase (guess) |
