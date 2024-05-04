@@ -26,6 +26,9 @@ function additionalSettings()
     if [ "`getprop persist.sys.phh.disable_audio_effects`" = "0" ]; then
         resetprop_command="`which_resetprop_command`"
         if [ -n "$resetprop_command" ]; then
+            # Workaround for recent Pixel Firmwares (not to reboot when resetprop'ing)
+            "$resetprop_command" --delete ro.audio.ignore_effects 1>"/dev/null" 2>&1
+            # End of workaround
             "$resetprop_command" ro.audio.ignore_effects true
             force_restart_server=1
         else
