@@ -32,7 +32,7 @@ This module,
 
 * See also my companion script ["USB_SampleRate_Changer"](https://github.com/yzyhk904/USB_SampleRate_Changer) to change the sample rate of the USB (HAL) audio class driver and a 3.5mm jack on the fly like Bluetooth LDAC or Windows mixer to enjoy high resolution sound or to reduce resampling distortion (actually pre-echo, ringing and intermodulation) ultimately. If annoying (perhaps, for many people) DRC (Dynamic Range Control, i.e., a kind of compression) has been enabled on your device (e.g., smart phones and tablets having an SDM??? or SM???? model numbered SoC internally), you can disable DRC by this script. Or you can use my magisk module ["DRC remover"](https://github.com/Magisk-Modules-Alt-Repo/drc-remover) to simply disable DRC only.
 
-* Appendix (Resampling Parameter Examples):
+* Appendix A. Examples of Re-sampling Parameters:
     
     
     | Stop band attenuation (dB) | Half filter length | Cut-off (%) | Stop band (%) | Memo |
@@ -41,17 +41,18 @@ This module,
     | This mod. parameters: | - | - | - | - |
     | 160 | 320 | 91 | | Low Performance devices under A12 |
     | 160 | 480 | 91 | | High Performance devices under A12 |
-    | 167 | 368 | | 106 | Low Performance devices for A12 and later |
+    | 165 | 360 | | 104 | Low Performance devices for A12 and later |
     | 179 | 408 | | 99 | High Performance devices for A12 and later, and Galaxy S4 |
     | External examples: | - | - | - | - |
     | 100 | 29 | (91) | 109 | AK4493 (Sharp roll-off N-fold over-sampling) |
     | 150 | 42 | (91) | 109 | AK4191EQ (Sharp roll-off N-fold over-sampling) |
     | 120 | 35 | (97) | 110 | ESS 9038PRO (Fast roll-off N-fold over-sampling) |
     | 50 ~ 118 | 34 | 96 | (398) | ESS 9039PRO (Fast roll-off N-fold over-sampling) |
+    | 110 | 40 | (96) | 109 | CX43131 (Fast roll-off N-fold over-sampling) |
     | 98 | 130 | 98.5 | | MacOS Leopard (guess) |
-    | 160 | 240 | | 100 | iZotope, No-Alias (guess) |
-    | 98 | 64 | | 100 | SoX HQ linear phase (guess) |
-    | 170 | 520 | | 100 | SoX VHQ linear phase (guess) |
+    | 159 | 240 | | 99 | iZotope, No-Alias (guess) |
+    | 100 | 64 | | 99 | SoX HQ linear phase (guess) |
+    | 170 | 520 | | 99 | SoX VHQ linear phase (guess) |
 
 <br/>
 <br/>
