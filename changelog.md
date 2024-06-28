@@ -1,10 +1,10 @@
 ## Change logs
 
-#v1.3.7
+# v1.3.7
 * Added "compatible Magisk-mirroring" message for incompatible Magisk variants
 * Adjusted re-sampling parameters for old devices
 
-#v1.3.6
+# v1.3.6
 * Tuned the USB period size for SDM845 devices (2500 usec to 2250 usec)
 * Tuned the USB period size for other devices (to 2250 usec)
 * Added checking incompatible Magisk variants
