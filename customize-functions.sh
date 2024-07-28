@@ -234,10 +234,9 @@ function replaceSystemProps_S4()
             "$MODPATH/system.prop-workaround"
 }
 
-function replaceSystemProps_kona()
+function replaceSystemProps_Kona()
 {
-    if [ ! "`getprop ro.vendor.build.version.release_or_codename`" -ge "12"  -a  \
-        \( -e "${MODPATH%/*/*}/modules/usb-samplerate-unlocker"  -o  -e "${MODPATH%/*/*}/modules_update/usb-samplerate-unlocker" \) ]; then
+    if [ -e "${MODPATH%/*/*}/modules/usb-samplerate-unlocker"  -o  -e "${MODPATH%/*/*}/modules_update/usb-samplerate-unlocker" ]; then
         sed -i \
             -e 's/vendor\.audio\.usb\.perio=.*$/vendor\.audio\.usb\.perio=2750/' \
             -e 's/vendor\.audio\.usb\.out\.period_us=.*$/vendor\.audio\.usb\.out\.period_us=2750/' \
@@ -251,12 +250,12 @@ function replaceSystemProps_kona()
 
     else
         sed -i \
-            -e 's/vendor\.audio\.usb\.perio=.*$/vendor\.audio\.usb\.perio=2250/' \
-            -e 's/vendor\.audio\.usb\.out\.period_us=.*$/vendor\.audio\.usb\.out\.period_us=2250/' \
+            -e 's/vendor\.audio\.usb\.perio=.*$/vendor\.audio\.usb\.perio=2000/' \
+            -e 's/vendor\.audio\.usb\.out\.period_us=.*$/vendor\.audio\.usb\.out\.period_us=2000/' \
                 "$MODPATH/system.prop"
         sed -i \
-            -e 's/vendor\.audio\.usb\.perio=.*$/vendor\.audio\.usb\.perio=2250/' \
-            -e 's/vendor\.audio\.usb\.out\.period_us=.*$/vendor\.audio\.usb\.out\.period_us=2250/' \
+            -e 's/vendor\.audio\.usb\.perio=.*$/vendor\.audio\.usb\.perio=2000/' \
+            -e 's/vendor\.audio\.usb\.out\.period_us=.*$/vendor\.audio\.usb\.out\.period_us=2000/' \
                 "$MODPATH/system.prop-workaround"
 
     fi
@@ -265,12 +264,12 @@ function replaceSystemProps_kona()
 function replaceSystemProps_SDM845()
 {
     sed -i \
-        -e 's/vendor\.audio\.usb\.perio=.*$/vendor\.audio\.usb\.perio=2250/' \
-        -e 's/vendor\.audio\.usb\.out\.period_us=.*$/vendor\.audio\.usb\.out\.period_us=2250/' \
+        -e 's/vendor\.audio\.usb\.perio=.*$/vendor\.audio\.usb\.perio=2000/' \
+        -e 's/vendor\.audio\.usb\.out\.period_us=.*$/vendor\.audio\.usb\.out\.period_us=2000/' \
             "$MODPATH/system.prop"
     sed -i \
-        -e 's/vendor\.audio\.usb\.perio=.*$/vendor\.audio\.usb\.perio=2250/' \
-        -e 's/vendor\.audio\.usb\.out\.period_us=.*$/vendor\.audio\.usb\.out\.period_us=2250/' \
+        -e 's/vendor\.audio\.usb\.perio=.*$/vendor\.audio\.usb\.perio=2000/' \
+        -e 's/vendor\.audio\.usb\.out\.period_us=.*$/vendor\.audio\.usb\.out\.period_us=2000/' \
             "$MODPATH/system.prop-workaround"
 }
 
@@ -283,24 +282,24 @@ function replaceSystemProps_SDM()
 function replaceSystemProps_MTK_Dimensity()
 {
     sed -i \
-        -e 's/vendor\.audio\.usb\.perio=.*$/vendor\.audio\.usb\.perio=2250/' \
-        -e 's/vendor\.audio\.usb\.out\.period_us=.*$/vendor\.audio\.usb\.out\.period_us=2250/' \
+        -e 's/vendor\.audio\.usb\.perio=.*$/vendor\.audio\.usb\.perio=2000/' \
+        -e 's/vendor\.audio\.usb\.out\.period_us=.*$/vendor\.audio\.usb\.out\.period_us=2000/' \
             "$MODPATH/system.prop"
     sed -i \
-        -e 's/vendor\.audio\.usb\.perio=.*$/vendor\.audio\.usb\.perio=2250/' \
-        -e 's/vendor\.audio\.usb\.out\.period_us=.*$/vendor\.audio\.usb\.out\.period_us=2250/' \
+        -e 's/vendor\.audio\.usb\.perio=.*$/vendor\.audio\.usb\.perio=2000/' \
+        -e 's/vendor\.audio\.usb\.out\.period_us=.*$/vendor\.audio\.usb\.out\.period_us=2000/' \
             "$MODPATH/system.prop-workaround"
 }
 
 function replaceSystemProps_Tensor()
 {
     sed -i \
-        -e 's/vendor\.audio\.usb\.perio=.*$/vendor\.audio\.usb\.perio=2250/' \
-        -e 's/vendor\.audio\.usb\.out\.period_us=.*$/vendor\.audio\.usb\.out\.period_us=2250/' \
+        -e 's/vendor\.audio\.usb\.perio=.*$/vendor\.audio\.usb\.perio=2000/' \
+        -e 's/vendor\.audio\.usb\.out\.period_us=.*$/vendor\.audio\.usb\.out\.period_us=2000/' \
             "$MODPATH/system.prop"
     sed -i \
-        -e 's/vendor\.audio\.usb\.perio=.*$/vendor\.audio\.usb\.perio=2250/' \
-        -e 's/vendor\.audio\.usb\.out\.period_us=.*$/vendor\.audio\.usb\.out\.period_us=2250/' \
+        -e 's/vendor\.audio\.usb\.perio=.*$/vendor\.audio\.usb\.perio=2000/' \
+        -e 's/vendor\.audio\.usb\.out\.period_us=.*$/vendor\.audio\.usb\.out\.period_us=2000/' \
             "$MODPATH/system.prop-workaround"
 }
 
@@ -308,12 +307,12 @@ function replaceSystemProps_Others()
 {
     if [ -e "${MODPATH%/*/*}/modules/usb-samplerate-unlocker"  -o  -e "${MODPATH%/*/*}/modules_update/usb-samplerate-unlocker" ]; then
         sed -i \
-            -e 's/vendor\.audio\.usb\.perio=.*$/vendor\.audio\.usb\.perio=2250/' \
-            -e 's/vendor\.audio\.usb\.out\.period_us=.*$/vendor\.audio\.usb\.out\.period_us=2250/' \
+            -e 's/vendor\.audio\.usb\.perio=.*$/vendor\.audio\.usb\.perio=2000/' \
+            -e 's/vendor\.audio\.usb\.out\.period_us=.*$/vendor\.audio\.usb\.out\.period_us=2000/' \
                 "$MODPATH/system.prop"
         sed -i \
-            -e 's/vendor\.audio\.usb\.perio=.*$/vendor\.audio\.usb\.perio=2250/' \
-            -e 's/vendor\.audio\.usb\.out\.period_us=.*$/vendor\.audio\.usb\.out\.period_us=2250/' \
+            -e 's/vendor\.audio\.usb\.perio=.*$/vendor\.audio\.usb\.perio=2000/' \
+            -e 's/vendor\.audio\.usb\.out\.period_us=.*$/vendor\.audio\.usb\.out\.period_us=2000/' \
                 "$MODPATH/system.prop-workaround"
         
         loosenedMessage

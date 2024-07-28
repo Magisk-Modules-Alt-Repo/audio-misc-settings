@@ -46,9 +46,9 @@ This module,
     | External examples: | - | - | - | - |
     | 100 | 29 | (91) | 109 | AK4493 (Sharp roll-off N-fold over-sampling) |
     | 150 | 42 | (91) | 109 | AK4191EQ (Sharp roll-off N-fold over-sampling) |
-    | 120 | 35 | (97) | 110 | ESS 9038PRO (Fast roll-off N-fold over-sampling) |
-    | 50 ~ 118 | 34 | 96 | (398) | ESS 9039PRO (Fast roll-off N-fold over-sampling) |
-    | 110 | 40 | (96) | 109 | CX43131 (Fast roll-off N-fold over-sampling) |
+    | 120 | 35 | (97) | 110 | ES9038PRO (Fast roll-off N-fold over-sampling) |
+    | vary 50 ~ 118 | 34 | 96 | (398) | ES9039PRO (Fast roll-off N-fold over-sampling) |
+    | 110 | 40 | (96) | 109 | CS43131 (Fast roll-off N-fold over-sampling) |
     | 98 | 130 | 98.5 | | MacOS Leopard (guess) |
     | 159 | 240 | | 99 | iZotope, No-Alias (guess) |
     | 100 | 64 | | 99 | SoX HQ linear phase (guess) |

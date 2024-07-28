@@ -9,20 +9,34 @@ if ! isMagiskMountCompatible; then
   Aborted by no Magisk-mirrors:
     try again either
       a.) with official Magisk (mounting mirrors), or
-      b.) after installing "Compatible Magisk-mirroring" Magisk module
+      b.) after installing "Compatible Magisk-mirroring" Magisk module and rebooting
   ***'
 fi
 
 REPLACE=""
 
-# making patched ALSA utility and Tensor's offload libraries for "ro.audio.usb.period_us"
+# Make patched ALSA utility and Tensor's offload libraries for "ro.audio.usb.period_us"
 makeLibraries
 
-# removing post-A13 (especially Tensor's) spatial audio flags in an audio configuration file for avoiding errors
+# Remove post-A13 (especially Tensor's) spatial audio flags in an audio configuration file for avoiding errors
 deSpatializeAudioPolicyConfig "/vendor/etc/bluetooth_audio_policy_configuration_7_0.xml"
 
-# disabling pre-installed Moto Dolby faetures and Wellbeing for reducing very large jitter caused by them
-disablePrivApps "
+# Disable pre-installed Moto Dolby faetures and Wellbeing for reducing very large jitter caused by them
+#   Excluded "MotorolaSettingsProvider" on Motorala devices only for avoiding their bootloop
+if [ "`getprop ro.product.manufacturer`" = "Motorola" ]; then
+    disablePrivApps "
+/system_ext/priv-app/MotoDolbyDax3
+/system_ext/priv-app/daxService
+/system_ext/priv-app/DaxUI
+/system_ext/app/MotoSignatureApp
+/product/priv-app/WellbeingPrebuilt
+/product/priv-app/Wellbeing
+/system_ext/priv-app/WellbeingPrebuilt
+/system_ext/priv-app/Wellbeing
+"
+
+else
+    disablePrivApps "
 /system_ext/priv-app/MotoDolbyDax3
 /system_ext/priv-app/MotorolaSettingsProvider
 /system_ext/priv-app/daxService
@@ -33,6 +47,8 @@ disablePrivApps "
 /system_ext/priv-app/WellbeingPrebuilt
 /system_ext/priv-app/Wellbeing
 "
+
+fi
 
 if "$IS64BIT"; then
     board="`getprop ro.board.platform`"

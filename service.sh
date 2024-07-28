@@ -65,6 +65,21 @@ function additionalSettings()
         fi
         
     fi
+
+    # Force disabling spatializer if OS reverted the spatializer setting during the booting process
+    if [ "`getprop ro.audio.spatializer_enabled`" = "true" ]; then
+        resetprop_command="`which_resetprop_command`"
+        if [ -n "$resetprop_command" ]; then
+            # Workaround for recent Pixel Firmwares (not to reboot when resetprop'ing)
+            "$resetprop_command" --delete ro.audio.spatializer_enabled 1>"/dev/null" 2>&1
+            # End of workaround
+            "$resetprop_command" ro.audio.spatializer_enabled false
+            force_restart_server=1
+        else
+            return 1
+        fi
+    fi
+
         
     if [ "$force_restart_server" = "1"  -o  "`getprop ro.system.build.version.release`" -ge "12" ]; then
         if [ -n "`getprop init.svc.audioserver`" ]; then
