@@ -1,5 +1,7 @@
 ro.config.media_vol_steps=100
 audio.safemedia.bypass=true
+audio.safemedia.force=false
+audio.safemedia.csd.force=false
 ro.audio.ignore_effects=true
 ro.audio.spatializer_enabled=false
 ro.vendor.audio.dolby.dax.support=false

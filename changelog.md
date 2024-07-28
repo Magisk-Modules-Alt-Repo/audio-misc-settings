@@ -4,6 +4,7 @@
 * Added disabling Dolby control support for USB DAC's on HyperOS not to reboot
 * Excluded "MotorolaSettingsProvider" on Motorala devices only for avoiding their bootloop
 * Changed the USB period_us from 2250 usec to 2000 usec to optimize for 48 kHz Opus tracks (recent majority)
+* Added new props "audio.safemedia.force=false" and "audio.safemedia.csd.force=false"
 
 # v1.3.7
 * Added "compatible Magisk-mirroring" message for incompatible Magisk variants
