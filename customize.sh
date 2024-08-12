@@ -23,7 +23,7 @@ deSpatializeAudioPolicyConfig "/vendor/etc/bluetooth_audio_policy_configuration_
 
 # Disable pre-installed Moto Dolby faetures and Wellbeing for reducing very large jitter caused by them
 #   Excluded "MotorolaSettingsProvider" on Motorala devices only for avoiding their bootloop
-if [ "`getprop ro.product.manufacturer`" = "Motorola" ]; then
+if [ "`getprop ro.product.manufacturer`" = "motorola"  -o  "`getprop ro.product.manufacturer`" = "Motorola" ]; then
     disablePrivApps "
 /system_ext/priv-app/MotoDolbyDax3
 /system_ext/priv-app/daxService
