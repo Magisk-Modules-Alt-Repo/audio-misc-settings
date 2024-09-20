@@ -1,17 +1,7 @@
 #!/system/bin/sh
 
-[ -z "$(magisk --path)" ] && alias magisk='ksu-magisk'
 
 . "$MODPATH/customize-functions.sh"
-
-if ! isMagiskMountCompatible; then
-    abort '  ***
-  Aborted by no Magisk-mirrors:
-    try again either
-      a.) with official Magisk (mounting mirrors), or
-      b.) after installing "Compatible Magisk-mirroring" Magisk module and rebooting
-  ***'
-fi
 
 REPLACE=""
 

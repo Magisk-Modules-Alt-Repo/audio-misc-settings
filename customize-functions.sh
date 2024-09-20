@@ -1,17 +1,5 @@
 #!/system/bin/sh
 
-# Check whether Magisk magic mount compatible or not
-function isMagiskMountCompatible()
-{
-    local tmp="$(magisk --path)"
-    if [ -z "$tmp" ]; then
-        return 1
-    elif [ -d "${tmp}/.magisk/mirror/vendor" ]; then
-        return 0
-    else
-        return 1
-    fi
-}
 
 # Get the active audio policy configuration fille from the audioserever
 function getActivePolicyFile()
@@ -119,14 +107,13 @@ function patchMapProperty()
 
 function makeLibraries()
 {
-    local MAGISKPATH="$(magisk --path)"
     local d lname
     
     for d in "lib" "lib64"; do
         for lname in "libalsautils.so" "libalsautilsv2.so" "audio_usb_aoc.so"; do
-            if [ -r "${MAGISKPATH}/.magisk/mirror/vendor/${d}/${lname}" ]; then
+            if [ -r "/vendor/${d}/${lname}" ]; then
                 mkdir -p "${MODPATH}/system/vendor/${d}"
-                patchMapProperty "${MAGISKPATH}/.magisk/mirror/vendor/${d}/${lname}" "${MODPATH}/system/vendor/${d}/${lname}"
+                patchMapProperty "/vendor/${d}/${lname}" "${MODPATH}/system/vendor/${d}/${lname}"
                 chmod 644 "${MODPATH}/system/vendor/${d}/${lname}"
                 chcon u:object_r:vendor_file:s0 "${MODPATH}/system/vendor/${d}/${lname}"
                 chown root:root "${MODPATH}/system/vendor/${d}/${lname}"
@@ -339,20 +326,17 @@ function deSpatializeAudioPolicyConfig()
     if [ $# -ne 1  -o  -z "$1"  -o  ! -r "$1" ]; then
         return 1
     fi
-    local MAGISKPATH="$(magisk --path)"
+    
     local configXML="$1"
     
-    # Don't use "$MAGISKPATH/.magisk/mirror/system${configXML}" instead of "$MAGISKPATH/.magisk/mirror${configXML}".
-    # In some cases, the former may link to overlaied "${configXML}" by Magisk itself (not original mirrored "${configXML}").
-    local mirrorConfigXML="$MAGISKPATH/.magisk/mirror${configXML}"
 
-    if [ -n "$configXML"  -a  -r "$mirrorConfigXML" ]; then
-        grep -e "flags[[:space:]]*=[[:space:]]*\"AUDIO_OUTPUT_FLAG_SPATIALIZER\"" "$mirrorConfigXML" >"/dev/null" 2>&1
+    if [ -n "$configXML" ]; then
+        grep -e "flags[[:space:]]*=[[:space:]]*\"AUDIO_OUTPUT_FLAG_SPATIALIZER\"" "$ConfigXML" >"/dev/null" 2>&1
         if [ "$?" -eq 0 ]; then
             local modConfigXML="$MODPATH/system${configXML}"
             mkdir -p "${modConfigXML%/*}"
             touch "$modConfigXML"
-            stopSpatializer "$mirrorConfigXML" "$modConfigXML"
+            stopSpatializer "$ConfigXML" "$modConfigXML"
             chmod 644 "$modConfigXML"
             chcon u:object_r:vendor_configs_file:s0 "$modConfigXML"
             chown root:root "$modConfigXML"
@@ -372,12 +356,11 @@ function disablePrivApps()
         return 1
     fi
 
-    local MAGISKPATH="$(magisk --path)"
     local dir mdir
     local PrivApps="$1"
     
     for dir in $PrivApps; do
-        if [ -d "${MAGISKPATH}/.magisk/mirror${dir}" ]; then
+        if [ -d "${dir}" ]; then
             case "${dir}" in
                 /system/* )
                     dir="${dir#/system}"
