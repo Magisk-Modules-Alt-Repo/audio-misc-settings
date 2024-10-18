@@ -8,7 +8,7 @@ if ! isMagiskMountCompatible; then
     abort '  ***
   Aborted by no Magisk-mirrors:
     try again either
-      a.) with official Magisk (mounting mirrors), or
+      a.) with official Magisk v27.0 (mounting mirrors), or
       b.) after installing "Compatible Magisk-mirroring" Magisk module and rebooting
   ***'
 fi
