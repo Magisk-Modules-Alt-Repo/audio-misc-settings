@@ -1,5 +1,8 @@
 ## Change logs
 
+# v1.3.9
+* Adapted to run with my new module "Audio Samplerate Changer"
+
 # v1.3.8
 * Added disabling Dolby control support for USB DAC's on HyperOS not to reboot
 * Excluded "MotorolaSettingsProvider" on Motorala devices only for avoiding their bootloop
@@ -7,6 +10,8 @@
 * Added new props "audio.safemedia.force=false" and "audio.safemedia.csd.force=false"
 * Fixed above disabling Dolby control support (manufacturer mismatch)
 * Added a support for Tensor G4 (zuma pro)
+* Changed a mirroring warning for incompatible Magisk v28.0; Please use [Compatible magisk-mirroring](https://github.com/Magisk-Modules-Alt-Repo/compatible-magisk-mirroring) and Magisk v28.0 together
+* Added better re-sampling parameters for very high performance devices
 
 # v1.3.7
 * Added "compatible Magisk-mirroring" message for incompatible Magisk variants

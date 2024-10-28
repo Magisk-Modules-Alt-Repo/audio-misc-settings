@@ -14,6 +14,7 @@ if ! isMagiskMountCompatible; then
 fi
 
 REPLACE=""
+REPLACEFILES=""
 
 # Make patched ALSA utility and Tensor's offload libraries for "ro.audio.usb.period_us"
 makeLibraries
@@ -53,13 +54,16 @@ fi
 if "$IS64BIT"; then
     board="`getprop ro.board.platform`"
     case "$board" in
+        zuma* | "pineapple"  )
+            replaceSystemProps_VHPerf
+            ;;
         "kona" | "kalama" | "shima" | "yupik" )
             replaceSystemProps_Kona
             ;;
         "sdm845" )
             replaceSystemProps_SDM845
             ;;
-        gs* | zuma* )
+        gs* )
             replaceSystemProps_Tensor
             ;;
         "sdm660" | "bengal" | "holi" )
@@ -96,3 +100,4 @@ else
 fi
 
 rm -f "$MODPATH/customize-functions.sh" "$MODPATH/LICENSE" "$MODPATH/README.md" "$MODPATH/changelog.md"
+ui_print_replacelist "$REPLACEFILES"
