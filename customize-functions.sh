@@ -22,6 +22,26 @@ function getActivePolicyFile()
         }' 
 }
 
+# Extract the file name of an audio_policy_volumes.xml
+function getVolumeFile()
+{
+    if [ $# -gt 0  -a  -r "$1" ]; then
+        grep -m 1 -e '<xi:include[[:space:]]*href[[:space:]]*=[[:space:]]*".*audio_policy_volumes.*\.xml"' "$1" | awk -F '"' '{ print $2 }'
+    else
+        return 1
+    fi
+}
+
+# Extract the file name of a default_volume_tables.xml
+function getDefaultVolumeFile()
+{
+    if [ $# -gt 0  -a  -r "$1" ]; then
+        grep -m 1 -e '<xi:include[[:space:]]*href[[:space:]]*=[[:space:]]*".*default_volume_tables.*\.xml"' "$1" | awk -F '"' '{ print $2 }'
+    else
+        return 1
+    fi
+}
+
 function stopDRC()
 {
     # stopDRC has two args specifying a main audio policy configuration XML file (eg. audio_policy_configuration.xml) and its dummy one to be overridden
