@@ -18,7 +18,7 @@ This module,
 <br/>
 <br/>
 
-* Don't forget to install ["Audio jitter silencer"](https://github.com/Magisk-Modules-Alt-Repo/audio-jitter-silencer) together and uninstall "Digital Wellbeing" app (for reducing very large jitters which this module cannot reduce by itself)! If you like much clearer replay (especially on Qcomm devices using an offloading USB driver with large jitter), use <a href="https://github.com/yzyhk904/USB_SampleRate_Changer">"USB_SampleRate_Changer"</a> for reducing the jitter (making foggy sound).
+* Don't forget to install ["Audio jitter silencer"](https://github.com/Magisk-Modules-Alt-Repo/audio-jitter-silencer) together and uninstall "Digital Wellbeing" app (for reducing very large jitters which this module cannot reduce by itself)! If you like much clearer replay (especially on Qcomm devices using an offloading USB driver with large jitter), use <a href="https://github.com/yzyhk904/USB_SampleRate_Changer">"USB_SampleRate_Changer"</a> or <a href="https://github.com/Magisk-Modules-Alt-Repo/audio-samplerate-changer">"Audio Samplerate Changer"</a> for reducing the jitter (making foggy sound).
 
 * Don't use Am@zon music using a much worse internal re-sampler which bypasses the mastering quality re-sampling in the OS mixer (audioFlinger). Other music streaming services don't use such an internal re-sampler, as far as I know.
 
