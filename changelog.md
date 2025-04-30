@@ -1,5 +1,8 @@
 ## Change logs
 
+# v1.3.10
+* Tuned for POCO F3 (Android 15)
+
 # v1.3.9
 * Adapted to run with my new module "Audio Samplerate Changer"
 

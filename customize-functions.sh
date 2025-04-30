@@ -399,29 +399,14 @@ function replaceSystemProps_S4()
 
 function replaceSystemProps_Kona()
 {
-    if [ -e "${MODPATH%/*/*}/modules/usb-samplerate-unlocker"  -o  -e "${MODPATH%/*/*}/modules_update/usb-samplerate-unlocker" ]; then
-        sed -i \
-            -e 's/vendor\.audio\.usb\.perio=.*$/vendor\.audio\.usb\.perio=2750/' \
-            -e 's/vendor\.audio\.usb\.out\.period_us=.*$/vendor\.audio\.usb\.out\.period_us=2750/' \
-                "$MODPATH/system.prop"
-        sed -i \
-            -e 's/vendor\.audio\.usb\.perio=.*$/vendor\.audio\.usb\.perio=2750/' \
-            -e 's/vendor\.audio\.usb\.out\.period_us=.*$/vendor\.audio\.usb\.out\.period_us=2750/' \
-                "$MODPATH/system.prop-workaround"
-
-        loosenedMessage 192kHz
-
-    else
-        sed -i \
-            -e 's/vendor\.audio\.usb\.perio=.*$/vendor\.audio\.usb\.perio=2000/' \
-            -e 's/vendor\.audio\.usb\.out\.period_us=.*$/vendor\.audio\.usb\.out\.period_us=2000/' \
-                "$MODPATH/system.prop"
-        sed -i \
-            -e 's/vendor\.audio\.usb\.perio=.*$/vendor\.audio\.usb\.perio=2000/' \
-            -e 's/vendor\.audio\.usb\.out\.period_us=.*$/vendor\.audio\.usb\.out\.period_us=2000/' \
-                "$MODPATH/system.prop-workaround"
-
-    fi
+    sed -i \
+        -e 's/vendor\.audio\.usb\.perio=.*$/vendor\.audio\.usb\.perio=4000/' \
+        -e 's/vendor\.audio\.usb\.out\.period_us=.*$/vendor\.audio\.usb\.out\.period_us=4000/' \
+            "$MODPATH/system.prop"
+    sed -i \
+        -e 's/vendor\.audio\.usb\.perio=.*$/vendor\.audio\.usb\.perio=4000/' \
+        -e 's/vendor\.audio\.usb\.out\.period_us=.*$/vendor\.audio\.usb\.out\.period_us=4000/' \
+            "$MODPATH/system.prop-workaround"
 }
 
 function replaceSystemProps_SDM845()
@@ -479,6 +464,26 @@ function replaceSystemProps_Others()
                 "$MODPATH/system.prop-workaround"
         
         loosenedMessage
+        
+    fi
+    
+}
+
+# HyperOS v2.0 and Motorola stock OS v15.0 cannot increase the number of volume steps
+
+function deleteSystemProps_for_some_Stocks()
+{
+    local Moto="`getprop ro.mot.build.customerid`"
+    local MIUI="`getprop ro.miui.ui.version.code`"
+    local AndroidVersion="`getprop ro.system.build.version.release`"
+
+    if [  -n "$MIUI"  -a  "$MIUI" -ge 14 ] || [ -n "$Moto"  -a  "$AndroidVersion" -ge 15 ]; then
+        sed -i \
+            -e '/^ro\.config\.media_vol_steps=/d' \
+                "$MODPATH/system.prop"
+        sed -i \
+            -e '/^ro\.config\.media_vol_steps=/d' \
+                "$MODPATH/system.prop-workaround"
         
     fi
     

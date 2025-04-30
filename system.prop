@@ -6,6 +6,7 @@ ro.audio.ignore_effects=true
 ro.audio.spatializer_enabled=false
 ro.vendor.audio.dolby.dax.support=false
 vendor.audio.dolby.control.support=false
+persist.audio.dolby.enabled=false
 vendor.audio.usb.perio=2000
 vendor.audio.usb.out.period_us=2000
 vendor.audio.usb.out.period_count=2
