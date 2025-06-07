@@ -43,27 +43,24 @@ function additionalSettings()
     fi
     
     # Nullifying the volume listener for no compressing audio (maybe a peak limiter)
-    if [ "`getprop persist.sys.phh.disable_soundvolume_effect`" = "0" ]; then
-        if [ -r "/system/phh/empty"  -a  -r "/vendor/lib/soundfx/libvolumelistener.so" ]; then
-            mount -o bind "/system/phh/empty" "/vendor/lib/soundfx/libvolumelistener.so"
-            force_restart_server=1
-        fi
-        if [ -r "/system/phh/empty"  -a  -r "/vendor/lib64/soundfx/libvolumelistener.so" ]; then
-            mount -o bind "/system/phh/empty" "/vendor/lib64/soundfx/libvolumelistener.so"
-            force_restart_server=1
-        fi
-        
-    elif [ "`getprop persist.sys.phh.disable_soundvolume_effect`" != "1" ]; then
-        # for non- phh GSI's (Qcomm devices only?)
-        if [ -r "/vendor/lib/soundfx/libvolumelistener.so" ]; then
-            mount -o bind "/dev/null" "/vendor/lib/soundfx/libvolumelistener.so"
-            force_restart_server=1
-        fi
-        if [ -r "/vendor/lib64/soundfx/libvolumelistener.so" ]; then
-            mount -o bind "/dev/null" "/vendor/lib64/soundfx/libvolumelistener.so"
-            force_restart_server=1
-        fi
-        
+    #   for Qcomm devices only?
+    if [ -r "/vendor/lib/soundfx/libvolumelistener.so" ]; then
+        mount -o bind "/dev/null" "/vendor/lib/soundfx/libvolumelistener.so"
+        force_restart_server=1
+    fi
+    if [ -r "/vendor/lib64/soundfx/libvolumelistener.so" ]; then
+        mount -o bind "/dev/null" "/vendor/lib64/soundfx/libvolumelistener.so"
+        force_restart_server=1
+    fi
+
+    #   for Motorola devices only?
+    if [ -r "/vendor/lib/soundfx/libdlbvol.so" ]; then
+        mount -o bind "/dev/null" "/vendor/lib/soundfx/libdlbvol.so"
+        force_restart_server=1
+    fi
+    if [ -r "/vendor/lib64/soundfx/libdlbvol.so" ]; then
+        mount -o bind "/dev/null" "/vendor/lib64/soundfx/libdlbvol.so"
+        force_restart_server=1
     fi
 
     # Force disabling spatializer if OS reverted the spatializer setting during the booting process

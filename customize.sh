@@ -6,10 +6,11 @@
 
 if ! isMagiskMountCompatible; then
     abort '  ***
-  Aborted by no Magisk-mirrors:
-    try again either
-      a.) with official Magisk v27.0 (mounting mirrors), or
-      b.) after installing "Compatible Magisk-mirroring" Magisk module and rebooting
+  Aborted by no magisk-mirrors (even including kernelSUs):
+    Try again after reawaking the mirrors
+        by installing my another magisk/kernelSU module
+        "Compatible Magisk-mirroring" and rebooting
+
   ***'
 fi
 
