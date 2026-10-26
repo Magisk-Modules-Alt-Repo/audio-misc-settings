@@ -10,6 +10,20 @@
 
 #
 
+function unsetVolumeMediaSteps()
+{
+    # Delete volume media steps key
+    settings delete system volume_steps_music
+}
+
+function unsetCSDproperties()
+{
+    # CSD (Calculated Sound Dose) disabling properties
+    settings delete global safe_media_volume_enabled
+    settings delete global audio_safe_csd_next_warning
+    settings put global audio_safe_volume_state 1
+}
+
 # sleep 20 secs needed for settings commans to be effective in an orphan process
 
-(((sleep 20; settings delete system volume_steps_music) 0<&- &>"/dev/null" &) &)
+(((sleep 20; unsetVolumeMediaSteps; unsetCSDproperties) 0<&- &>"/dev/null" &) &)

@@ -1,4 +1,3 @@
-ro.config.media_vol_steps=100
 audio.safemedia.bypass=true
 audio.safemedia.force=false
 audio.safemedia.csd.force=false

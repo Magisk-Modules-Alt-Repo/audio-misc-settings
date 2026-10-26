@@ -1,5 +1,8 @@
 ## Change logs
 
+# v1.3.12
+* Fixed a CSD (Calculated Sound Dose) disabling feature for recent Android
+
 # v1.3.11
 * Changed an error message for no Magisk mirrors
 * Stop AOCXD daemon on Tensor devices

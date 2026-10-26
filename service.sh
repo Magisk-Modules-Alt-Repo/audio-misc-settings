@@ -80,8 +80,24 @@ function additionalSettings()
             return 1
         fi
     fi
+    
+    # set the number of volume steps for a volume step facility of old custom ROMs
+    settings put system volume_steps_music 100
+    
+    # set properties to disable the computed sound dose feature in recent Android for hifi sound
+    case "`getprop ro.board.platform`" in
+        gs* | zuma* | laguna* | malibu* )
+            settings put global safe_media_volume_enabled 0
+            settings put global audio_safe_csd_next_warning 999999.0
+            settings put global audio_safe_volume_state 3
+            ;;
+        * )
+            # Some ROMs (perhaps, under Android 17?) triggers to worsen audio quality by "audio_safe_volume_state 3"
+            settings put global safe_media_volume_enabled 0
+            settings put global audio_safe_csd_next_warning 999999.0
+            ;;
+    esac
 
-        
     if [ "$force_restart_server" = "1"  -o  "`getprop ro.system.build.version.release`" -ge "12" ]; then
         if [ -n "`getprop init.svc.audioserver`" ]; then
             setprop ctl.restart audioserver
@@ -96,7 +112,6 @@ function additionalSettings()
         fi
         
     fi
-    settings put system volume_steps_music 100
 }
 
 (((sleep 31; additionalSettings)  0<&- &>"/dev/null" &) &)

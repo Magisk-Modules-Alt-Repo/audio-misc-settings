@@ -64,7 +64,7 @@ if "$IS64BIT"; then
         "sdm845" )
             replaceSystemProps_SDM845
             ;;
-        gs* | zuma* )
+        gs* | zuma* | laguna* | malibu* )
             replaceSystemProps_Tensor
             ;;
         "sdm660" | "bengal" | "holi" )

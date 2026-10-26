@@ -36,3 +36,6 @@ else
     done
 
 fi
+
+# Not to be removed by some other modules or the system on this device
+resetprop -n ro.config.media_vol_steps 100
