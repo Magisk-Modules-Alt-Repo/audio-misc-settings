@@ -2,6 +2,7 @@
 
 # v1.3.12
 * Fixed a CSD (Calculated Sound Dose) disabling feature for recent Android
+* Fixed ro.config.media_vol_steps missing in some situations
 
 # v1.3.11
 * Changed an error message for no Magisk mirrors
